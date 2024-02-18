@@ -1,0 +1,53 @@
+{
+    "name": "Zenvid",
+    "short_name": "Zenvid",
+    "description": "Zenvid is the  Decentralized video sharing platform Built on crossbell network, in zenvid  you own your social graph, your contents  ",
+    "theme_color": "#111729",
+    "background_color": "#111729",
+    "start_url": "/",
+    "display": "standalone",
+    "scope": "/",
+    "display_override": [
+      "window-controls-overlay",
+      "standalone",
+      "minimal-ui",
+      "fullscreen",
+      "browser"
+    ],
+    "orientation": "portrait",
+    "screenshots": [
+      { "src": "/screenshots/mobile-1.png" },
+      { "src": "/screenshots/mobile-2.png" },
+      { "src": "/screenshots/mobile-3.png" },
+      { "src": "/screenshots/wide-screen.png" },
+      { "src": "/screenshots/wide-screen-2.png" },
+      { "src": "/screenshots/wide-screen-3.png" }
+    ],
+    "icons": [
+      {
+        "src": "/icons/icon-192x192.png",
+        "sizes": "192x192",
+        "type": "image/png",
+        "purpose": "any"
+      },
+      {
+        "src": "/icons/maskable-icon-192x192.png",
+        "sizes": "192x192",
+        "type": "image/png",
+        "purpose": "maskable"
+      },
+      {
+        "src": "/icons/icon-512x512.png",
+        "sizes": "512x512",
+        "type": "image/png",
+        "purpose": "any"
+      },
+      {
+        "src": "/icons/icon-512x512.png",
+        "sizes": "512x512",
+        "type": "image/png",
+        "purpose": "maskable"
+      }
+    ]
+  }
+  

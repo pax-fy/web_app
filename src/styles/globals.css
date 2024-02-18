@@ -1,0 +1,132 @@
+@media screen and (min-width: 768px) {
+  :root {
+    font-size: 0.9375rem;
+  }
+}
+
+:root {
+  --background: 236 239 244;
+  --background-light: 248 250 252;
+  --background-lighter: 236 239 244;
+  --background-lightest: 219 222 230;
+  --background-primary: 77 70 220;
+  --background-primary-light: 224 225 254;
+  --background-warning: 225 181 62;
+  --background-info: 77 70 220;
+  --background-accent: 236 239 244;
+  --background-red: 254 247 247;
+  --text: 32 41 58;
+  --text-primary: 99 102 241;
+  --text-secondary: 99 102 241;
+  --text-secondary-light: 37 99 235;
+  --text-muted: 100 116 139;
+  --text-dark: 17 23 41;
+  --text-warning: 230 121 38;
+  --text-on-primary: 255 255 255;
+  --text-muted-on-primary: 151 162 182;
+  --text-red: 220 70 70;
+  --border-gray: 207 212 222;
+}
+
+.dark {
+  --background: 17 23 41;
+  --background-light: 32 41 58;
+  --background-lighter: 44 56 79;
+  --background-lightest: 54 74 102;
+  --background-primary: 77 70 220;
+  --background-primary-light: 77 70 220;
+  --background-warning: 225 181 62;
+  --background-info: 77 70 220;
+  --background-accent: 104 4 231;
+  --background-red: 54 40 55;
+  --text: 255 255 255;
+  --text-primary: 136 131 232;
+  --text-secondary: 130 161 248;
+  --text-secondary-light: 191 219 254;
+  --text-muted: 163 172 190;
+  --text-dark: 17 23 41;
+  --text-warning: 225 181 62;
+  --text-on-primary: 255 255 255;
+  --text-muted-on-primary: 197 205 222;
+  --text-red: 241 95 95;
+  --border-gray: 51 59 74;
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  @apply scrollbar-thin scrollbar-track-background scrollbar-thumb-background-lightest scrollbar-track-rounded-full scrollbar-thumb-rounded-full dark:scrollbar-thumb-background-lighter;
+}
+
+html,
+body {
+  @apply font-sans;
+  @apply text-text;
+  @apply text-base;
+  @apply bg-background;
+}
+
+#pwa-install {
+  position: relative;
+  z-index: 9999;
+}
+
+.grecaptcha-badge {
+  visibility: hidden;
+  display: none;
+}
+
+.highlighted {
+  @apply relative after:pointer-events-none after:absolute after:left-0 after:top-0 after:h-full after:w-full after:rounded-2xl after:bg-background-primary/20;
+}
+.highlighted::after {
+  animation: highlighted-blue 4s ease-in-out 1;
+}
+.dark .highlighted {
+  @apply after:hidden;
+  animation: highlighted 4s ease-in-out 1;
+}
+@keyframes highlighted-blue {
+  0% {
+    opacity: 0;
+  }
+  3% {
+    opacity: 1;
+  }
+  15% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+@keyframes highlighted {
+  3% {
+    filter: brightness(1.4);
+  }
+  15% {
+    filter: brightness(1.4);
+  }
+}
+
+@layer utilities {
+  /* Hide scrollbar for Chrome, Safari and Opera */
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  /* Hide scrollbar for IE, Edge and Firefox */
+  .no-scrollbar {
+    -ms-overflow-style: none; /* IE and Edge */
+   scrollbar-width: none; /* Firefox */
+  
+}}
+
+ 
+@layer base {
+  
+  body {
+    @apply bg-background text-text;
+  }
+}
