@@ -116,7 +116,7 @@ console.log("the user profile", userProfiles?.profiles[0])
 			</div>
 			<div className='flex items-center gap-2'>
 		 <Link href={`/`}>
-		<Image  src={`/img/logo.jpg`}  width={150} height={150} alt='logo' 
+		<Image  src={`/img/logo.png`}  width={150} height={150} alt='logo' 
   className='w-7 h-7 rounded-full cursor-pointer'
 />	</Link></div>
 <p className='text-xs font-semibold text-rose-500'>TESTNET</p>
