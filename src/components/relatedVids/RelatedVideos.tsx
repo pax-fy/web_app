@@ -1,7 +1,6 @@
 //@ts-nocheck
 import React, {useState} from 'react'
 import { IPFS_GATEWAY2 } from '@/assets/constant'
-import { CharacterAvatar } from "@crossbell/ui";
 import moment from 'moment'
 import RelatedVideoCrad from '../cards/RelatedVideoCrad';
 import { useDiscoverVideos } from '@/hooks/useDiscoverVideos';

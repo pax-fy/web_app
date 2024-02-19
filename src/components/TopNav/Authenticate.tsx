@@ -1,5 +1,4 @@
 import React from 'react'
-import { ConnectButton } from '@crossbell/connect-kit'
 import {useTheme} from 'next-themes'
 import { disconnect } from '@particle-network/auth-core'
 

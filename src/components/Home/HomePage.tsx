@@ -56,6 +56,12 @@ const [allPostswMetadata, setallPostswMetadata] = useState({})
     }
   };
        const getMetadata = async () => {
+
+           // Check if allVids or allVids.posts is not yet available
+  if (!allVids || !allVids.posts) {
+    console.error("Posts data not available yet");
+    return;
+  }
      // Fetch post metadata for each post
      const postsWithMetadata = await Promise?.all(allVids?.posts?.map(async post => {
       const metadata = await fetchMetadata(post.contentURI);

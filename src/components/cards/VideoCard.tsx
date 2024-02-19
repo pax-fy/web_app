@@ -2,7 +2,6 @@ import Image from 'next/image'
 import React, {useState} from 'react'
 import {motion} from 'framer-motion'
 import { IPFS_GATEWAY2, base64File } from '@/assets/constant'
-import { CharacterAvatar } from "@crossbell/ui";
 import moment from 'moment'
 import Link from 'next/link';
 
@@ -48,7 +47,7 @@ export default  function  VideoCard({cover, channel, channelId, noteId, createdA
          </div>
 
          <div className='flex  space-x-3 py-2 '>
-         <Link href={`/c/${channelId}`}><CharacterAvatar    character={channel} className='w-8 h-8' size={``}  /></Link>
+         <Link href={`/c/${channelId}`}>profile</Link>
           <div>
           <Link className="line-clamp-2 break-words font-bold" href={`/watch/${channelId}-${noteId}`}>
                 {title || `Video by ${channel?.metadata?.content?.name}`}

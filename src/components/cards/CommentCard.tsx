@@ -1,6 +1,4 @@
 import React, {useState} from 'react'
-import { CharacterAvatar } from "@crossbell/ui";
-import { useIsConnected, useTipModal } from "@crossbell/connect-kit";
 import moment from 'moment';
 type commentsprops = {
     comment? : any
@@ -12,7 +10,7 @@ export default function CommentCard({comment, creator, createdAt} : commentsprop
     const [currentTime, setCurrentTime] = useState(new Date());
     const currentDate = new Date();
     const videoCreatedAt = new Date(createdAt);
-    const { isActive, show, hide } = useTipModal();
+   
     //@ts-ignore
     const diffInMilliseconds = currentDate - videoCreatedAt;
     const diffInHours = diffInMilliseconds / (60 * 60 * 1000);
@@ -21,7 +19,7 @@ console.log("comment from card", creator)
   return (
     <div className='flex  gap-2 my-3 '>
             <div className='w-7 h-7 md:w-12 md:h-12'>
-   <CharacterAvatar size={'full'} character={creator}   />
+  <div className='w-6 h-6 border-red-500 rounded-full'></div>
             </div>
             <div>
                
@@ -34,7 +32,7 @@ console.log("comment from card", creator)
 </svg>
 <p className='text-sm'>Like</p>
        </div>
-       <div className='flex items-center gap-1 cursor-pointer hover:text-rose-500' onClick={() => show({characterId: creator?.characterId})}>
+       <div className='flex items-center gap-1 cursor-pointer hover:text-rose-500' >
        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-3.5 h-3.5">
   <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v12m-3-2.818l.879.659c1.171.879 3.07.879 4.242 0 1.172-.879 1.172-2.303 0-3.182C13.536 12.219 12.768 12 12 12c-.725 0-1.45-.22-2.003-.659-1.106-.879-1.106-2.303 0-3.182s2.9-.879 4.006 0l.415.33M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
 </svg>

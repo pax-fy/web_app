@@ -3,9 +3,6 @@
 import React, {useState, useEffect} from 'react'
 import {useTheme} from 'next-themes'
 import { Button } from '../ui/button'
-import { CharacterAvatar } from "@crossbell/ui";
-import { ConnectButton } from "@crossbell/connect-kit";
-import { extractCharacterName } from "@crossbell/util-metadata";
 import Image from 'next/image';
 import Search from './Search';
 import Authenticated from './Authenticated';

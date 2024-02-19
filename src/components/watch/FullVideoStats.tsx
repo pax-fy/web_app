@@ -1,8 +1,5 @@
 
 import React, {useState, useEffect} from 'react'
-import { useToggleLikeNote, useIsNoteLiked } from "@crossbell/connect-kit";
-import { useIsConnected, useTipModal, useMintNote,  } from "@crossbell/connect-kit";
-import { useNoteStatus } from "@crossbell/indexer";
 import ShareButtons from '../cards/Share';
 import Modal from '../common/Modal';
 import {
@@ -14,6 +11,7 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog"
 import moment from 'moment';
+import { WEBSITE_URL } from '@/assets/constant';
   type statsProps ={
     stats? : any
     createdAt ? : any
@@ -32,14 +30,6 @@ export default function FullVideoStats({stats, createdAt, videId, tips, likes, i
   const diffInHours = diffInMilliseconds / (60 * 60 * 1000);
   const duration = moment.duration(diffInHours, "hours");
 
-  const isConnected = useIsConnected();
-	const { isActive, show, hide } = useTipModal();
-   console.log("the trusted note info", note)
-  const { data: status } = useNoteStatus(note);
-  console.log("the minted status", status)
-	const mintNote = useMintNote();
-
-  const toggleLikeNote = useToggleLikeNote();
    const [testTruth, settestTruth] = useState(true)
 
     const [isShowTipModal, setisShowTipModal] = useState(false)
@@ -72,7 +62,7 @@ export default function FullVideoStats({stats, createdAt, videId, tips, likes, i
   <p className=' text-sm md:font-semibold'>{likes || "0"}</p>
               </div>
             ) : (
-              <div className='flex items-center gap-2 hover:text-text-primary cursor-pointer' onClick={() => toggleLikeNote.mutate(note)}>
+              <div className='flex items-center gap-2 hover:text-text-primary cursor-pointer' >
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 h-5">
   <path strokeLinecap="round" strokeLinejoin="round" d="M6.633 10.5c.806 0 1.533-.446 2.031-1.08a9.041 9.041 0 012.861-2.4c.723-.384 1.35-.956 1.653-1.715a4.498 4.498 0 00.322-1.672V3a.75.75 0 01.75-.75A2.25 2.25 0 0116.5 4.5c0 1.152-.26 2.243-.723 3.218-.266.558.107 1.282.725 1.282h3.126c1.026 0 1.945.694 2.054 1.715.045.422.068.85.068 1.285a11.95 11.95 0 01-2.649 7.521c-.388.482-.987.729-1.605.729H13.48c-.483 0-.964-.078-1.423-.23l-3.114-1.04a4.501 4.501 0 00-1.423-.23H5.904M14.25 9h2.25M5.904 18.75c.083.205.173.405.27.602.197.4-.078.898-.523.898h-.908c-.889 0-1.713-.518-1.972-1.368a12 12 0 01-.521-3.507c0-1.553.295-3.036.831-4.398C3.387 10.203 4.167 9.75 5 9.75h1.053c.472 0 .745.556.5.96a8.958 8.958 0 00-1.302 4.665c0 1.194.232 2.333.654 3.375z" />
 </svg>
@@ -93,22 +83,22 @@ export default function FullVideoStats({stats, createdAt, videId, tips, likes, i
           </div>
    <>
     {
-      status?.isMinted ? (
+      testTruth ? (
         <div className=' items-center gap-2 text-text-primary cursor-pointer  flex'>
        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6">
   <path d="M11.644 1.59a.75.75 0 01.712 0l9.75 5.25a.75.75 0 010 1.32l-9.75 5.25a.75.75 0 01-.712 0l-9.75-5.25a.75.75 0 010-1.32l9.75-5.25z" />
   <path d="M3.265 10.602l7.668 4.129a2.25 2.25 0 002.134 0l7.668-4.13 1.37.739a.75.75 0 010 1.32l-9.75 5.25a.75.75 0 01-.71 0l-9.75-5.25a.75.75 0 010-1.32l1.37-.738z" />
   <path d="M10.933 19.231l-7.668-4.13-1.37.739a.75.75 0 000 1.32l9.75 5.25c.221.12.489.12.71 0l9.75-5.25a.75.75 0 000-1.32l-1.37-.738-7.668 4.13a2.25 2.25 0 01-2.134-.001z" />
 </svg>
-<p className='text-sm font-semibold'>Minted {status?.mintCount}</p>
+<p className='text-sm font-semibold'>Minted 2</p>
         </div>
       ): (
-        <div className=' items-center gap-2 hover:text-text-primary cursor-pointer  flex' onClick={() => mintNote.mutate(note)}>
+        <div className=' items-center gap-2 hover:text-text-primary cursor-pointer  flex' >
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 h-5">
 <path strokeLinecap="round" strokeLinejoin="round" d="M6.429 9.75L2.25 12l4.179 2.25m0-4.5l5.571 3 5.571-3m-11.142 0L2.25 7.5 12 2.25l9.75 5.25-4.179 2.25m0 0L21.75 12l-4.179 2.25m0 0l4.179 2.25L12 21.75 2.25 16.5l4.179-2.25m11.142 0l-5.571 3-5.571-3" />
 </svg>
 
-<p className='text-sm font-semibold'>Mint {status?.mintCount}</p>
+<p className='text-sm font-semibold'>Mint 5</p>
         </div>
       )
     }
@@ -129,7 +119,7 @@ export default function FullVideoStats({stats, createdAt, videId, tips, likes, i
     <DialogHeader>
       <DialogTitle className='mb-4 '>Share</DialogTitle>
       <DialogDescription>
-       <ShareButtons url={`https://www.Zenvid.xyz/watch/${note?.characterId}-${videId}`} />
+       <ShareButtons url={`${WEBSITE_URL}/watch/${note?.characterId}-${videId}`} />
       </DialogDescription>
     </DialogHeader>
   </DialogContent>

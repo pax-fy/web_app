@@ -2,15 +2,11 @@
 
 import React from 'react'
 import { Popover, PopoverContent, PopoverTrigger } from '../ui/popover'
-import { CharacterAvatar } from "@crossbell/ui";
 import ChevronDownOutline from '../common/Icons/ChevronDown';
 import ProfileManagerOutline from '../common/Icons/ProfileManager';
 import { ShortsOutline, User } from '../common/Icons';
 import { truncateText } from '@/helpers';
-import { useAccountBalance, useOpSignSettingsModal, useAccountCharacter, useSelectCharactersModal } from '@crossbell/connect-kit';
-import { ConnectButton } from '@crossbell/connect-kit';
 import  {useTheme} from 'next-themes'
-import { useShowNotificationModal } from "@crossbell/notification";
 import Link from 'next/link';
 import Button from '../common/Button';
 import { MdOutlineVideoCall } from "react-icons/md";
@@ -24,17 +20,8 @@ interface authentictedProps {
      disconnect : any
 }
 export default function Authenticated({address, handle, profile, disconnect}: authentictedProps) {
-    const { balance, isLoading } = useAccountBalance();
-    const character = useAccountCharacter();
    const  {theme, setTheme} = useTheme()
-   const { isActive, show: showOpSignModal, hide } = useOpSignSettingsModal();
-   const { isActive : isCharcaterModalActive, show: showCharacterModal, hide: hideCharacterModal } = useSelectCharactersModal();
-const show = useShowNotificationModal()
-    const handleShowOpModal = () => {
-      if(character) {
-        showOpSignModal(character)
-      }
-    }
+
 
         
   const  handleToggleTheme = () => {
@@ -79,7 +66,7 @@ const show = useShowNotificationModal()
    <Popover>
       <PopoverTrigger>
            <div className='flex items-center gap-2   rounded-lg'>
-           <CharacterAvatar size={25} character={profile} />
+           <p>profile pic</p>
             <div className='xs:hidden md:block'>
                  <h1 className=' capitalize text-sm leading-none font-semibold hidden md:block'>{profile?.handle}</h1>
                  {/*<h2 className='text-xs text-text-muted dark:text-text'>@{handle}</h2>*/}

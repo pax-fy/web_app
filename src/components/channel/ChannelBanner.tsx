@@ -1,5 +1,4 @@
 import { IPFS_GATEWAY2 } from '@/assets/constant'
-import { CharacterAvatar } from "@crossbell/ui";
 import React, {useState} from 'react'
 import { useToast } from "@/components/ui/use-toast"
 import { useIsConnected, useTipModal, useAccountCharacter, useFollowCharacter, useUnfollowCharacter } from "@crossbell/connect-kit";
@@ -94,9 +93,8 @@ export default function ChannelBanner({avatar, handle, followers, channel, chann
       <div className='absolute xs:top-[75%] md:top-[73%]  w-full bg-white/40 dark:bg-black/70 backdrop-blur-lg '>
         <div className='flex gap-3 items-center z-10'>
           <div className='w-20 h-20 md:w-24 md:h-24 lg:w-28 lg:h-28'>
-          <CharacterAvatar   size={`full`}  
-           character={channel}
-           />
+           <div className='w-9 h-9 border border-red-400 ronded-full'></div>
+         
           </div>
   
  <div className='z-20'>

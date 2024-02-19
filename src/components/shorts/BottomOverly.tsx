@@ -9,28 +9,17 @@
 import type { MirrorablePublication } from '@tape.xyz/lens'*/
 import Link from 'next/link'
 import Button from '../common/Button'
-import { CharacterAvatar } from "@crossbell/ui";
-import {
-  useCharacterFollowRelation,
-  useCharacterFollowStats,
-} from "@crossbell/indexer";
-import {  useAccountCharacter, useFollowCharacter, useUnfollowCharacter } from "@crossbell/connect-kit";
+
 import { useRouter } from 'next/router';
 
- import { useNoteStatus } from "@crossbell/indexer";
+
 /*type Props = {
   video: MirrorablePublication
 }*/
 
 const BottomOverlay = ({ video }: any) => {
-  const { data: profileStats } = useCharacterFollowStats(video?.characterId);
-  const currentCharacter = useAccountCharacter()
   const router = useRouter();
-  const follow = useFollowCharacter();
-  const { data: relationStatus } = useCharacterFollowRelation(
-    currentCharacter?.characterId,
-    video?.characterId
-  );
+  
   // const profile = video.by
 console.log("video from overlay", video)
   return (
@@ -44,13 +33,13 @@ console.log("video from overlay", video)
             href={`/u/${`/profile`}`}
             className='flex flex-none cursor-pointer items-center space-x-2'
           >
-             <CharacterAvatar   character={video?.character}  className='w-7 h-7' size={``}  />
+           <p>profile</p>
             <div className='flex min-w-0 flex-col items-start text-white'>
               <h6 className='flex max-w-full items-center space-x-1'>
                 {video?.character?.handle}
               </h6>
               <span className='inline-flex items-center space-x-1 text-xs'>
-              {profileStats?.followersCount} followers
+              100 followers
               </span>
             </div>
           </Link>
@@ -59,10 +48,10 @@ console.log("video from overlay", video)
            className='text-white'
            
          variant={`primaryOutline`}
-         disabled={relationStatus?.isFollowed}
-         onClick={() => follow.mutate(video?.characterId)}
+         disabled={true}
+         
           >
-            {relationStatus?.isFollowed ? "Following" : "Follow"}
+           Follow
 
           </Button>
      

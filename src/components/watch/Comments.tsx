@@ -1,8 +1,6 @@
 //@ts-nocheck
 
 import React, {useState} from 'react'
-import { useIsConnected, usePostNoteForNote , ConnectButton, useAccountCharacter, useConnectedAccount} from '@crossbell/connect-kit'
-import { CharacterAvatar } from "@crossbell/ui";
 import { useGetVideoComments } from '@/hooks';
 import CommentCard from '../cards/CommentCard';
 import Image from 'next/image';
@@ -17,11 +15,7 @@ type commentsProps = {
 }
 export default function Comments({comments, videoId, profileId}: commentsProps) {
   console.log("video comments", comments);
-    const character = useAccountCharacter();
-    const isConnected = useIsConnected();
     const [commentTxt, setcommentTxt] = useState("");
-    const account = useConnectedAccount();
-    const postNoteForNote = usePostNoteForNote();
     const [isLoading, setisLoading] = useState(false)
   
    const note = {
@@ -32,25 +26,8 @@ export default function Comments({comments, videoId, profileId}: commentsProps) 
 
      const handleComment = async () => {
       setisLoading(true)
-      try{
-       
-        postNoteForNote.mutate({
-          note,
-          metadata: {
-            content: commentTxt,
-            sources: ["xtube_v1"],
-            external_urls: [`${WEBSITE_URL}`],
-            tags: ["comment"],
-          },
-        });
-        setisLoading(false)
-      }catch (error){
-        setisLoading(false)
-        toast({
-          title : "Something went wrong",
-           description : error
-        })
-      }
+     
+      
      }
    if(comments?.data?.list < 1){
     return(
