@@ -14,7 +14,7 @@ export default function TipModal() {
         
          {tipTier?.map((tip, i) => (
 
-            <div className='inline-flex  flex-col space-y-2 border cursor-pointer border-gray-400 hover:border-text-primary h-20 w-24 py-2 px-2 rounded-lg  items-center'> 
+            <div className='inline-flex  flex-col space-y-2 border cursor-pointer border-gray-400 hover:border-text-primary h-20 w-24 py-2 px-2 rounded-lg  items-center' key={i}> 
                 <h2 className='text-xl'>{tip.emoji}</h2>
                  <h2 className='text-sm'>{tip.amount} $PAX</h2>
          </div>
