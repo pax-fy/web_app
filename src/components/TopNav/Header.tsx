@@ -18,6 +18,7 @@ import { GET_USER_PROFILES_BY_ADDRESS } from '@/graphql/fragments/getUserProfile
 import { useQuery } from '@apollo/client';
 import { apolloClient } from '@/graphql/apolloClient';
 import { useUserContext } from '@/providers/UserContext';
+import Modal from '../common/Modal';
 type headerprops  = {
 	isShowFull? : boolean
 	 toggleSidebar? : any
@@ -32,7 +33,7 @@ export default function Header({isShowFull, toggleSidebar} : headerprops) {
   const [userAddress, setuserAddress] = useState()
   const [userProfiles, setuserProfiles] = useState()
   const {primaryProfile, userProfile,} = useUserContext()
-
+const [isShowHandleModal, setisShowHandleModal] = useState(false)
    const profileData = userProfiles?.profiles[0]
 console.log("the user profile", userProfiles?.profiles[0])
   const smartAccount = new SmartAccount(provider, {
@@ -148,6 +149,8 @@ console.log("the user profile", userProfiles?.profiles[0])
 		<Authenticate  authenticate={handleLogin}  />
 	)
    }
+
+    
     </div>
   )
 }

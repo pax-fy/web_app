@@ -323,7 +323,7 @@ CHECK VIDEO  DURATION
         title: videoTitle,
       content: caption,
       tags: "video tags",
-      source:  "source_test",  //isShortClip ? SHORT_APP_ID : APP_ID,
+      source:  isShortClip ? SHORT_APP_ID : APP_ID,
       cover: coverCID,
        media: assets[0]?.playbackId,
        mediaAddress: assets[0]?.playbackId,
@@ -392,11 +392,8 @@ CHECK VIDEO  DURATION
         TODO
         TOASTIFY THE ERROR
         ====================*/
-        console.log("something went wrong while uploading the video ", error)
-        toast({
-          title : "someting went wrong",
-          description : "something went wrong while uploading video"
-        })
+        console.log( error)
+     
       }
     };
        

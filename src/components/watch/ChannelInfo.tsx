@@ -16,7 +16,9 @@ export default function ChannelInfo({channel}: channelProps) {
     <div className='flex justify-between items-center my-3'>
         <div className='flex gap-2 items-center'>
         <div className='w-10 h-10 rounded-full sm:w-14 sm:h-14 lg:w-20 lg:h-20 shadow-2xl '>
-        <p>profile pic</p>
+        <div className='w-full h-full bg-purple-400 border border-red-400 flex text-2xl items-center justify-center font-extrabold rounded-full text-white'>
+              P
+           </div>
         </div>
         <div>
              <h1 className='text-sm font-semibold md:font-normal text-muted hover:text-rose-600 md:text-lg'>{channel?.handle}</h1>

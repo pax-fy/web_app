@@ -2,6 +2,10 @@
 import React, {useState, useEffect} from 'react'
 import ShareButtons from '../cards/Share';
 import Modal from '../common/Modal';
+import ABI  from '../../abi/paxfy.json'
+import { contractAddress } from '@/assets/constant';
+import { ethers, Contract } from 'ethers';
+import { useUserContext } from '@/providers/UserContext';
 import {
   Dialog,
   DialogContent,
@@ -12,6 +16,7 @@ import {
 } from "@/components/ui/dialog"
 import moment from 'moment';
 import { WEBSITE_URL } from '@/assets/constant';
+import TipModal from '../common/TipModal';
   type statsProps ={
     stats? : any
     createdAt ? : any
@@ -25,14 +30,39 @@ import { WEBSITE_URL } from '@/assets/constant';
 export default function FullVideoStats({stats, createdAt, videId, tips, likes, isLiked, note} : statsProps) {
   const currentDate = new Date();
   const videoCreatedAt = new Date(createdAt);
+  const {userAddress, primaryProfile, userProfile, signer} = useUserContext()
   //@ts-ignore
   const diffInMilliseconds = currentDate - videoCreatedAt;
   const diffInHours = diffInMilliseconds / (60 * 60 * 1000);
   const duration = moment.duration(diffInHours, "hours");
 
+    console.log("the noteee", note)
    const [testTruth, settestTruth] = useState(true)
 
     const [isShowTipModal, setisShowTipModal] = useState(false)
+
+    const  contract = new Contract(contractAddress, ABI, signer)
+      const handleMint = async () =>  {
+         if(! signer || ! userAddress){
+          alert("Connect wallet first")
+         }else if( userAddress && !primaryProfile){
+          alert("You have not claimed profile")
+         }else {
+          const fakeLinkModuleInitData = "0x7374617274696e675f6279746533320000000000000000000000000000000000"; // Adjust as needed
+            const mintVideoData = {
+            characterId: 2,  //note?.characterId, 
+            contentUri: 3, //note?.id,
+            to:  userAddress, 
+          //data : 12
+          };
+
+          const transaction = await contract?.mintNote(mintVideoData);
+    await transaction.wait();
+
+    console.log("Character created successfully!");
+    console.log("Character created  here is the tx id", transaction);
+         }
+      }
   return (
     <div className={`flex flex-col md:flex-row justify-start md:justify-between md:items-center px-2 border-b border-b-gray-400/60  dark:border-gray-800 pb-2 my-3 `}>
       <div className='flex items-center gap-4'>
@@ -84,7 +114,7 @@ export default function FullVideoStats({stats, createdAt, videId, tips, likes, i
    <>
     {
       testTruth ? (
-        <div className=' items-center gap-2 text-text-primary cursor-pointer  flex'>
+        <div className=' items-center gap-2 text-text-primary cursor-pointer  flex' >
        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6">
   <path d="M11.644 1.59a.75.75 0 01.712 0l9.75 5.25a.75.75 0 010 1.32l-9.75 5.25a.75.75 0 01-.712 0l-9.75-5.25a.75.75 0 010-1.32l9.75-5.25z" />
   <path d="M3.265 10.602l7.668 4.129a2.25 2.25 0 002.134 0l7.668-4.13 1.37.739a.75.75 0 010 1.32l-9.75 5.25a.75.75 0 01-.71 0l-9.75-5.25a.75.75 0 010-1.32l1.37-.738z" />
@@ -126,9 +156,9 @@ export default function FullVideoStats({stats, createdAt, videId, tips, likes, i
 </Dialog>
 
   <Modal isOpen={isShowTipModal} closeModal={() => setisShowTipModal(!isShowTipModal)}
-    title="Support Your Fav creator"
+   withCloseButton
   >
-        <div>Tip modal contents</div>
+      <TipModal  />
   </Modal>
          </div>
 

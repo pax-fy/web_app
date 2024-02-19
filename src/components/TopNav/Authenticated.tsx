@@ -1,6 +1,6 @@
 //@ts-nocheck
 
-import React from 'react'
+import React, {useState} from 'react'
 import { Popover, PopoverContent, PopoverTrigger } from '../ui/popover'
 import ChevronDownOutline from '../common/Icons/ChevronDown';
 import ProfileManagerOutline from '../common/Icons/ProfileManager';
@@ -13,6 +13,8 @@ import { MdOutlineVideoCall } from "react-icons/md";
 import { HiOutlineVideoCamera } from "react-icons/hi";
 import { installApp, isInstallAvailable} from '@/lib/install'
 import SearchVids from './Search';
+import Modal from '../common/Modal';
+import CreateHandleModal from '../common/CreateHandleModal';
 interface authentictedProps {
     address : string 
      handle : string
@@ -21,7 +23,7 @@ interface authentictedProps {
 }
 export default function Authenticated({address, handle, profile, disconnect}: authentictedProps) {
    const  {theme, setTheme} = useTheme()
-
+const [isShowHandleModal, setisShowHandleModal] = useState(false)
 
         
   const  handleToggleTheme = () => {
@@ -66,7 +68,9 @@ export default function Authenticated({address, handle, profile, disconnect}: au
    <Popover>
       <PopoverTrigger>
            <div className='flex items-center gap-2   rounded-lg'>
-           <p>profile pic</p>
+           <div className='w-7 h-7 bg-purple-400 border border-red-400 flex items-center justify-center font-extrabold rounded-full text-white'>
+              P
+           </div>
             <div className='xs:hidden md:block'>
                  <h1 className=' capitalize text-sm leading-none font-semibold hidden md:block'>{profile?.handle}</h1>
                  {/*<h2 className='text-xs text-text-muted dark:text-text'>@{handle}</h2>*/}
@@ -77,7 +81,7 @@ export default function Authenticated({address, handle, profile, disconnect}: au
       </PopoverTrigger>
        <PopoverContent className=''>
         <div>
-          <Link href={`/c/${profile?.id}`}>
+        
             <div className='flex gap-2 items-center cursor-pointer my-3'>
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-4 h-4">
   <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" />
@@ -85,7 +89,7 @@ export default function Authenticated({address, handle, profile, disconnect}: au
 
 <p className='font-semibold text-sm '>My channel</p>
             </div>
-            </Link>
+            
             <div className='flex gap-2 items-center cursor-pointer my-3'>
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-4 h-4">
   <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 17.25v3.375c0 .621-.504 1.125-1.125 1.125h-9.75a1.125 1.125 0 01-1.125-1.125V7.875c0-.621.504-1.125 1.125-1.125H6.75a9.06 9.06 0 011.5.124m7.5 10.376h3.375c.621 0 1.125-.504 1.125-1.125V11.25c0-4.46-3.243-8.161-7.5-8.876a9.06 9.06 0 00-1.5-.124H9.375c-.621 0-1.125.504-1.125 1.125v3.5m7.5 10.375H9.375a1.125 1.125 0 01-1.125-1.125v-9.25m12 6.625v-1.875a3.375 3.375 0 00-3.375-3.375h-1.5a1.125 1.125 0 01-1.125-1.125v-1.5a3.375 3.375 0 00-3.375-3.375H9.75" />
@@ -149,9 +153,20 @@ export default function Authenticated({address, handle, profile, disconnect}: au
 
  <p>Sign out</p>
 </div>
+
+<div className='flex gap-2 items-center cursor-pointer mt-6' onClick={() => setisShowHandleModal(!isShowHandleModal)}>
+
+<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-4 h-4">
+  <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" />
+</svg>
+ <p>Claim handle</p>
+</div>
         </div>
        </PopoverContent>
    </Popover>
+   <Modal isOpen={isShowHandleModal} closeModal={() => setisShowHandleModal(!isShowHandleModal)}>
+     <CreateHandleModal closeModal={() => setisShowHandleModal(false)}  />
+   </Modal>
    </div>
   )
 }

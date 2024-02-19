@@ -22,25 +22,25 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog"
 import { WEBSITE_URL } from "@/assets/constant";
+import Modal from "../common/Modal";
+import TipModal from "../common/TipModal";
 
 
 
 const ByteActions = ({ video }: any) => {
+  const [isShowTipModal, setisShowTipModal] = useState(false)
   const note = {
-    noteId : video?.noteId,
-    characterId : video?.characterId
+    noteId : video?.id,
+    characterId : video?.profile?.id
 
   }
 
-  console.log("the note", note)
+ 
  
 
   const router = useRouter();
 
  
-   console.log("the trusted note info", note)
-
-  console.log("the minted status", status)
 
    const [testTruth, settestTruth] = useState(true)
 
@@ -65,7 +65,7 @@ const ByteActions = ({ video }: any) => {
             )
              }
 
-<div className='flex flex-col items-center  hover:text-rose-500 cursor-pointer' >
+<div className='flex flex-col items-center  hover:text-rose-500 cursor-pointer' onClick={() => setisShowTipModal(! isShowTipModal)} >
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
   <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v12m-3-2.818l.879.659c1.171.879 3.07.879 4.242 0 1.172-.879 1.172-2.303 0-3.182C13.536 12.219 12.768 12 12 12c-.725 0-1.45-.22-2.003-.659-1.106-.879-1.106-2.303 0-3.182s2.9-.879 4.006 0l.415.33M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
 </svg>
@@ -84,7 +84,7 @@ const ByteActions = ({ video }: any) => {
   <path d="M3.265 10.602l7.668 4.129a2.25 2.25 0 002.134 0l7.668-4.13 1.37.739a.75.75 0 010 1.32l-9.75 5.25a.75.75 0 01-.71 0l-9.75-5.25a.75.75 0 010-1.32l1.37-.738z" />
   <path d="M10.933 19.231l-7.668-4.13-1.37.739a.75.75 0 000 1.32l9.75 5.25c.221.12.489.12.71 0l9.75-5.25a.75.75 0 000-1.32l-1.37-.738-7.668 4.13a2.25 2.25 0 01-2.134-.001z" />
 </svg>
-<p className='text-sm font-semibold '>Minted </p>
+<p className='text-sm font-semibold hidden '>Minted </p>
         </div>
       ): (
         <div className=' items-center gap-2 hover:text-rose-500 cursor-pointer  flex' >
@@ -115,6 +115,11 @@ const ByteActions = ({ video }: any) => {
     </DialogHeader>
   </DialogContent>
 </Dialog>
+
+ <Modal isOpen={isShowTipModal} closeModal={() => setisShowTipModal(! isShowTipModal)}>
+ <TipModal  />
+   
+ </Modal>
     </div>
   )
 }

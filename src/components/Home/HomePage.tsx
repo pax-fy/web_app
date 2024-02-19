@@ -17,9 +17,13 @@ import { APP_ID } from '@/assets/constant'
 import axios from 'axios'
   // flex gap-4 flex-wrap md:px-1
 import Link from 'next/link'
-import useIPFSContent from '@/hooks/useIpfsContents'
+import { useUserContext } from '@/providers/UserContext'
+
 import { useGetAllVideos } from '@/hooks/useGetAllVideos'
-import useReadPosts from '@/hooks/useIpfsContents'
+import Modal from '../common/Modal'
+import CreateHandleModal from '../common/CreateHandleModal'
+
+//import { useUserContext } from '@/providers/UserContext'
 
 
   // data?.notes?.length > 1 && data?.notes?.filter(video => video.metadata?.content?.tags[0] !== "comment").map((note, i) =>
@@ -29,18 +33,13 @@ export default function HomePage() {
 const [allFilterePosts, setallFilterePosts] = useState([])
 const [allPostswMetadata, setallPostswMetadata] = useState({})
    const {allVids, allVidsLoading, allVidsError} = useGetAllVideos()
-   
+  const {primaryProfile, isShowHandleModal, toggleHandleModal} = useUserContext()
      console.log("see all videos  with metadata", allPostswMetadata)
      console.log("see all  filtered videos  ", allFilterePosts)
 
-  console.log("all videos", allVids)
-       const getInfo = async () => {
-        let info = await fetch("https://ipfs.subsocial.network/ipfs/QmVyicNiq3Q4Ng8cy5aG7ZroQfztAgyfpMX6mbAsWS423o")
-          .then(response => response.json())
-          .then(data => console.log("the logged info",data))
-         
-         
-       }
+
+     console.log("the primary profile", primaryProfile)
+  
    
 
 
@@ -85,8 +84,16 @@ const [allPostswMetadata, setallPostswMetadata] = useState({})
        useEffect(() => {
    
           getMetadata();
+       
         
       }, [allVids]);
+
+      useEffect(() => {
+      if(! primaryProfile){
+       toggleHandleModal()
+      }
+      }, [])
+      
      
        
 
@@ -139,7 +146,10 @@ if(allVidsLoading){
    
     </div>
 
-     <button className="py-2 px-3 bg-purple-500" onClick={() => getInfo()} >fetch info</button>
+
+ <Modal isOpen={isShowHandleModal} closeModal={toggleHandleModal} >
+    <CreateHandleModal  closeModal={toggleHandleModal} />
+ </Modal>
     </div>
   )
 }

@@ -33,7 +33,9 @@ console.log("video from overlay", video)
             href={`/u/${`/profile`}`}
             className='flex flex-none cursor-pointer items-center space-x-2'
           >
-           <p>profile</p>
+           <div className='w-7 h-7 rounded-full border border-purple-400'>
+             
+           </div>
             <div className='flex min-w-0 flex-col items-start text-white'>
               <h6 className='flex max-w-full items-center space-x-1'>
                 {video?.character?.handle}
@@ -47,7 +49,7 @@ console.log("video from overlay", video)
           <Button
            className='text-white'
            
-         variant={`primaryOutline`}
+         variant={`primary`}
          disabled={true}
          
           >

@@ -1,5 +1,5 @@
-//@ts-nocheck
 
+//@ts-nocheck
 import React, { createContext, useState, useContext, useEffect } from 'react';
 import { useEthereum, useConnect, useAuthCore } from '@particle-network/auth-core-modal';
 import { Avalanche, AvalancheTestnet, Ethereum } from '@particle-network/chains';
@@ -8,13 +8,16 @@ import { ethers, Contract } from 'ethers';
 import { GET_USER_PROFILES_BY_ADDRESS } from '@/graphql/fragments/getUserProfiles';
 import { apolloClient } from '@/graphql/apolloClient';
 
+
  type providerProps = {
      smartAccount : any
      primaryProfile :any
      userAddress : any
      userProfile : any
      signer : any
- }
+     toggleHandleModal: any
+     isShowHandleModal : any
+ } 
 // Create a context
 const UserContext = createContext<providerProps | undefined>(undefined);
 
@@ -36,6 +39,7 @@ export const UserContextProvider =({children} : ContextProps) => {
    const { provider } = useEthereum();
    const { userInfo } = useAuthCore();
    const { connect, disconnect } = useConnect();
+   const [isShowHandleModal, setisShowHandleModal] = useState(false)
 
    const smartAccount = new SmartAccount(provider, {
     projectId: "5d8ff4b5-9f56-42b9-94a9-3e571dd76971",
@@ -50,6 +54,10 @@ export const UserContextProvider =({children} : ContextProps) => {
       const address = await smartAccount.getAddress();
       setuserAddress(address)
     }
+
+      const toggleHandleModal = () => {
+        setisShowHandleModal(!isShowHandleModal)
+      }
 
     const handleFetchUserInfo = async () => {
         if(userAddress){
@@ -93,7 +101,9 @@ export const UserContextProvider =({children} : ContextProps) => {
       handleLogin,
       primaryProfile,
       userProfile,
-      signer
+      signer,
+      toggleHandleModal,
+      isShowHandleModal
    }
 
    return(

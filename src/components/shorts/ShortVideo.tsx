@@ -1,8 +1,10 @@
+//@ts-nocheck
+
 import MetaTags from '../common/MetaTags'
 
 import VideoPlayer from '../VideoPlayer'
 import type { FC } from 'react'
-import React, { useEffect, useRef } from 'react'
+import React, {useState, useEffect, useRef } from 'react'
 import BottomOverlay from './BottomOverly'
 import TopOverlay from './TopOverly'
 import ByteActions from './ByteActions'
@@ -21,10 +23,51 @@ const ByteVideo: FC<Props> = ({
   const videoRef = useRef<HTMLMediaElement>()
   const intersectionRef = useRef<HTMLDivElement>(null)
   //const targetPublication = getPublication(video)
+  const [allFilterePosts, setallFilterePosts] = useState([])
+  const [allPostswMetadata, setallPostswMetadata] = useState({})
+  const [postMetadata, setpostMetadata] = useState()
 
-  const thumbnailUrl = `${IPFS_GATEWAY}${video?.metadata?.content?.attachments[0].name}`
-  const playbackId = `${video?.metadata?.content?.attachments[0].address}`
-  const videoId = `${video?.characterId}-${video?.noteId}`
+
+ // Function to fetch metadata for a given CID
+ const fetchMetadata = async (cid) => {
+  try {
+     fetch(`https://ipfs.subsocial.network/ipfs/${cid}`)
+  .then(response => response.json())
+  .then(data => setpostMetadata(data))
+  .catch(error => console.error('Error:', error));
+    
+  } catch (error) {
+    console.error('Error fetching metadata for CID:', cid, error);
+    return {}; // Return empty object in case of error
+  }
+};
+    
+console.log('the post metadta', postMetadata)
+
+
+     useEffect(() => {
+      if(video){
+        fetchMetadata(video?.contentURI)
+      }
+    
+     }, [video])
+     
+
+
+
+
+
+
+
+
+
+
+
+
+     console.log("the  fuck video from video", video)
+  const thumbnailUrl = `${IPFS_GATEWAY}${postMetadata?.cover}`
+  const playbackId = `${postMetadata?.media}`
+  const videoId = `${video?.profile?.id}-${video?.id}`
   const activeProfile = "0x004455663xacuuu"
   
   const playVideo = () => {

@@ -47,7 +47,11 @@ export default  function  VideoCard({cover, channel, channelId, noteId, createdA
          </div>
 
          <div className='flex  space-x-3 py-2 '>
-         <Link href={`/c/${channelId}`}>profile</Link>
+         
+         <div className='w-7 h-7 bg-purple-400 border border-red-400 flex items-center justify-center font-extrabold rounded-full text-white'>
+              P
+           </div>
+         
           <div>
           <Link className="line-clamp-2 break-words font-bold" href={`/watch/${channelId}-${noteId}`}>
                 {title || `Video by ${channel?.metadata?.content?.name}`}
