@@ -7,15 +7,10 @@ import React, {useState} from 'react'
 import RelatedVideos from '../relatedVids/RelatedVideos'
 import FullVideoStats from './FullVideoStats'
 import { useQuery as useFetch  } from '@tanstack/react-query'
-import { useNoteLikeCount, useIsNoteLiked,  } from '@crossbell/connect-kit'
 import ChannelInfo from './ChannelInfo'
 import Comments from './Comments'
 import axios from 'axios'
 
-import {
-  useCharacterFollowRelation,
-  useCharacterFollowStats,
-} from "@crossbell/indexer";
 import VideoPlayer from '../VideoPlayer'
 import VideoFullSkeleton from '../skeletons/FullVideoSkeleton'
 type videoPageProps = {
@@ -42,15 +37,7 @@ export default function VideoPage({
       const [isSensitiveContent, setisSensitiveContent] = useState(false)
    const [isLoading, setisLoading] = useState(true)
 
-      const [{isLiked}] = useIsNoteLiked({
-        noteId : videoId,
-        characterId : channelId
-      })
 
-      const {data : likeCount} = useNoteLikeCount({
-        noteId : videoId,
-        characterId : channelId
-      })
     //  FTECH VIDEO  COMMENTS
     const COMMENTS_BASE_URL = `https://indexer.crossbell.io/v1/notes?limit=20&toCharacterId=${channelId}&toNoteId=${videoId}&includeDeleted=false&includeEmptyMetadata=false&includeCharacter=true&includeHeadCharacter=false&includeHeadNote=false&includeNestedNotes=true`;
      
@@ -72,8 +59,8 @@ export default function VideoPage({
         }
       }
 
-      const { data: profileStats } = useCharacterFollowStats(channelId);
-  console.log("user stats data", profileStats);
+   
+
         const PosterImage = () => {
             return (
               <Image
@@ -121,8 +108,8 @@ export default function VideoPage({
           tips={totalTips}
           videId={videoId}
           createdAt={createdAt}
-          likes={likeCount}
-          isLiked={isLiked}
+          likes={3}
+          isLiked={true}
           note={{ characterId: channelId, noteId: videoId}}
         />
          </div>

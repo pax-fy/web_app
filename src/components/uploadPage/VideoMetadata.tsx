@@ -11,16 +11,16 @@ import {
 import { toast, useToast } from "../ui/use-toast";
 //const contract = new Contract(window.ethereum)
 import { LIVEPEER_KEY } from "@/assets/constant";
-import { usePostVideo } from "@/hooks/usePostVideo";
-import { usePostNote } from "@crossbell/connect-kit";
+//import { usePostVideo } from "@/hooks/usePostVideo";
+//import { usePostNote } from "@crossbell/connect-kit";
 import { usePinToIpfs } from "@/hooks";
 import { useCreateAsset } from "@livepeer/react";
-import { useContract } from "@crossbell/contract";
-import { useAccountCharacter } from "@crossbell/connect-kit";
+//import { useContract } from "@crossbell/contract";
+//import { useAccountCharacter } from "@crossbell/connect-kit";
 import { ClipLoader } from "react-spinners";
 import { ThumbnailsLoadingSpinner } from "../skeletons";
 import { Progress } from "@radix-ui/react-progress";
-import { ipfsLinkToHttpLink } from "@/helpers";
+//import { ipfsLinkToHttpLink } from "@/helpers";
 import useWindowSize from 'react-use/lib/useWindowSize'
 import Confetti from 'react-confetti'
 import { Switch } from "../ui/switch";
@@ -53,12 +53,11 @@ export default function VideoMetadata({ videoFile , setVideoFile  }: any) {
   const [isNotCreated, setisNotCreated] = useState(false);
   const [coverCID, setcoverCID] = useState();
   const { uploadToIpfs, isUploading, isUploadingError } = usePinToIpfs();
-  const character = useAccountCharacter();
+
   const { width, height } = useWindowSize()
 const [testTruth, settestTruth] = useState(true)
- const {data, loading, error: fetchErrors} = useGetUserProfiles()
    const  {userAddress, userProfile, primaryProfile, signer} = useUserContext()
-  const postNote = usePostNote();
+   const {data, loading, error: fetchErrors} = useGetUserProfiles(userAddress)
 
   console.log("the user address", primaryProfile?.id)
 
@@ -289,7 +288,7 @@ CHECK VIDEO  DURATION
      ==============================
      
      */
-  const contract = useContract();
+
   /*
      ======================================
       END OF CROSSBELL CONTRACT INSTANCE

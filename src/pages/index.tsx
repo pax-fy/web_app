@@ -9,7 +9,7 @@ export default function Home() {
     <>
     <NextSeo
    title='Paxfy'
-  description='Paxfy is the  Decentralized video sharing platform Built on crossbell network, in zenvid  you own your social graph, your contents '
+  description='Paxfy is the  Decentralized video sharing platform Built on avalanche network, in paxfy  you own your social graph, your contents '
 />
     <main
      className='min-h-screen w-full'

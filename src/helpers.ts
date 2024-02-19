@@ -1,4 +1,4 @@
-import { IpfsGateway, isIpfsUrl } from "@crossbell/ipfs-gateway";
+
 
 export const  truncateText =(inputText : string | undefined, maxLength : number) => {
     //@ts-ignore
