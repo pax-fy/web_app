@@ -1,3 +1,5 @@
+//@ts-nocheck
+
 import React from 'react'
 import { Popover, PopoverContent, PopoverTrigger } from '../ui/popover'
 import { CharacterAvatar } from "@crossbell/ui";
@@ -145,14 +147,14 @@ const show = useShowNotificationModal()
 <p className='font-semibold text-sm'>{theme === "dark" ? "Switch to Light" : "Switch to Dark"}</p>
 </div>
 
-{/*isInstallAvailable() && <div className='flex gap-2 items-center cursor-pointer mt-4' onClick={() => installApp()}> 
+{isInstallAvailable() && <div className='flex gap-2 items-center cursor-pointer mt-4' onClick={() => installApp()}> 
   <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-4 h-4">
   <path strokeLinecap="round" strokeLinejoin="round" d="M3 16.5v2.25A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75V16.5M16.5 12 12 16.5m0 0L7.5 12m4.5 4.5V3" />
 </svg>
 
 <p  className='font-semibold text-sm'>Install App</p>
   
-    </div>*/}
+    </div>}
 <div className='flex gap-2 items-center cursor-pointer mt-6' onClick={() => disconnect()}>
 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-4 h-4">
   <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15M12 9l-3 3m0 0l3 3m-3-3h12.75" />

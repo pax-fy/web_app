@@ -1,4 +1,5 @@
 
+//@ts-nocheck
 import React, {useState, useEffect} from 'react'
 import { VideoCard } from '../cards'
 import { fakeArray, fakeArray_2, shortTest } from '@/assets/constant'

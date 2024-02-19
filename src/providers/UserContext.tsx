@@ -1,3 +1,5 @@
+//@ts-nocheck
+
 import React, { createContext, useState, useContext, useEffect } from 'react';
 import { useEthereum, useConnect, useAuthCore } from '@particle-network/auth-core-modal';
 import { Avalanche, AvalancheTestnet, Ethereum } from '@particle-network/chains';

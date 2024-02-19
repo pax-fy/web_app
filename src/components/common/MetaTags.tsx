@@ -1,6 +1,7 @@
 import {
      APP_DESCRIPTION,
      APP_NAME,
+     WEBSITE_URL,
      ZENVID_X_HANDLE,
 
     
@@ -36,8 +37,8 @@ import {
           name="viewport"
           content="minimum-scale=1, initial-scale=1, width=device-width, shrink-to-fit=no, maximum-scale=5, viewport-fit=cover"
         />
-        <link rel="canonical" href={`https://zenvid.xyz${router.asPath}`} />
-        <meta property="og:url" content={`https://zenvid.xyz${router.asPath}`} />
+        <link rel="canonical" href={`${WEBSITE_URL}${router.asPath}`} />
+        <meta property="og:url" content={`${WEBSITE_URL}https://zenvid.xyz${router.asPath}`} />
         <meta property="og:type" content={meta.type} />
         <meta property="og:site_name" content={APP_NAME} />
         <meta property="og:description" content={meta.description} />

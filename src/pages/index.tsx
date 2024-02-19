@@ -8,8 +8,8 @@ export default function Home() {
   return (
     <>
     <NextSeo
-   title='Zenvid'
-  description='Zenvid is the  Decentralized video sharing platform Built on crossbell network, in zenvid  you own your social graph, your contents '
+   title='Paxfy'
+  description='Paxfy is the  Decentralized video sharing platform Built on crossbell network, in zenvid  you own your social graph, your contents '
 />
     <main
      className='min-h-screen w-full'

@@ -55,7 +55,7 @@ export default function VideoId({post, loading} : any) {
             
           }
          ],
-         siteName : "Zenvid"
+         siteName : "Paxfy"
        }}
     
    />

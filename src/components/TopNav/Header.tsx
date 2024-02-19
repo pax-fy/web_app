@@ -1,3 +1,5 @@
+//@ts-nocheck
+
 import React, {useState, useEffect} from 'react'
 import {useTheme} from 'next-themes'
 import { Button } from '../ui/button'
@@ -61,7 +63,7 @@ console.log("the user profile", userProfiles?.profiles[0])
 				query : GET_USER_PROFILES_BY_ADDRESS,
 				variables : {
 					"where": {
-						"creator": "0x2db6a5b44bc3cbff245cfa086733d1fa0a57b4b4"
+						"creator": userAddress
 					  }
 				}
 				})
@@ -117,7 +119,7 @@ console.log("the user profile", userProfiles?.profiles[0])
 		<Image  src={`/img/logo.jpg`}  width={150} height={150} alt='logo' 
   className='w-7 h-7 rounded-full cursor-pointer'
 />	</Link></div>
-<p className='text-xs font-semibold text-rose-500'>BETA</p>
+<p className='text-xs font-semibold text-rose-500'>TESTNET</p>
 		 </div>
 	
 

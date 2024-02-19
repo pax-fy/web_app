@@ -8,6 +8,7 @@ import CommentCard from '../cards/CommentCard';
 import Image from 'next/image';
 import { toast } from '../ui/use-toast';
 import { ClipLoader } from 'react-spinners';
+import { WEBSITE_URL } from '@/assets/constant';
 type commentsProps = {
   comments ? : any 
   profileId ? : any
@@ -38,7 +39,7 @@ export default function Comments({comments, videoId, profileId}: commentsProps) 
           metadata: {
             content: commentTxt,
             sources: ["xtube_v1"],
-            external_urls: ["zenvid.xyz"],
+            external_urls: [`${WEBSITE_URL}`],
             tags: ["comment"],
           },
         });

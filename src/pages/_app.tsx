@@ -14,7 +14,7 @@ import Layout from '@/components/Layout';
 import { Toaster } from "@/components/ui/toaster"
 import { NextSeo, DefaultSeo } from 'next-seo';
 import dynamic from 'next/dynamic'
-import { WC_PROJECT_ID } from '@/assets/constant';
+import { APP_NAME, WC_PROJECT_ID, WEBSITE_URL } from '@/assets/constant';
 import { Avalanche, AvalancheTestnet } from '@particle-network/chains';
 import { AuthCoreContextProvider } from '@particle-network/auth-core-modal';
 import { UserContextProvider } from '@/providers/UserContext';
@@ -64,12 +64,12 @@ export default function App({ Component, pageProps }: AppProps) {
         <NextNProgress color="#4f46e5" startPosition={0.3} stopDelayMs={200} height={3} showOnShallow={true}  />
          <>
          <DefaultSeo
-            title='Zenvid'
-            description='Zenvid - decentralized video-sharing platform. designed to revolutionize your digital content experience.Take control of your content'
+            title='Paxfy'
+            description='Paxfy - decentralized video-sharing platform. designed to revolutionize your digital content experience.Take control of your content'
             openGraph={{
-              url: 'https://zenvid.xyz',
-              title: 'Zenvid',
-              description: 'Zenvid - decentralized video-sharing platform. designed to revolutionize your digital content experience.Take control of your content',
+              url: `${WEBSITE_URL}`,
+              title: 'Paxfy',
+              description: 'Paxfy - decentralized video-sharing platform. designed to revolutionize your digital content experience.Take control of your content',
               images: [
                 {
                   url: `/img/website-banner.png`,
@@ -86,11 +86,11 @@ export default function App({ Component, pageProps }: AppProps) {
                   type: 'image/jpeg',
                 },
               ],
-              siteName: 'Zenvid',
+              siteName: `${APP_NAME}`,
             }}
             twitter={{
-              handle: '@zenvid',
-              site: '@zenvid',
+              handle: '@paxfy',
+              site: '@paxfy',
               cardType: 'summary_large_image',
             }}
          />
