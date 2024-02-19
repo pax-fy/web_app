@@ -369,14 +369,14 @@ CHECK VIDEO  DURATION
 
       const transaction = await contract?.postNote(createVideoData);
     await transaction.wait();
-
+    setisNotCreated(true);
+    setisCreatingNote(false);
     console.log("Character created successfully!");
     console.log("Character created  here is the tx id", transaction);
         
       console.log("the note results", result);
   
-      setisNotCreated(true);
-        setisCreatingNote(false);
+     
         /* =====================
         TODO
          Direct  the  creator to  video  page
@@ -661,14 +661,7 @@ CHECK VIDEO  DURATION
             {isLoading ? progressFormatted :  "Post video"}
            </Button>
 
-           <Button className="w-3/4"
-            disabled={isShortClip && vidDuration > 180 || isLoading || isCreatingNote}
-            isLoading={isLoading || isCreatingNote}
-            loadingText={isLoading ? progressFormatted : "Posting video"}
-            onClick={() => handleCreateNote()}
-           >
-          custom test
-           </Button>
+          
         </div>
       </div>
     
