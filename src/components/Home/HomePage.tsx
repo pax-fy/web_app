@@ -28,7 +28,7 @@ export default function HomePage() {
   const [testTruth, settestTruth] = useState(false)
 const [allFilterePosts, setallFilterePosts] = useState([])
 const [allPostswMetadata, setallPostswMetadata] = useState({})
-   const {allVids, allVidsLoading} = useGetAllVideos()
+   const {allVids, allVidsLoading, allVidsError} = useGetAllVideos()
    
      console.log("see all videos  with metadata", allPostswMetadata)
      console.log("see all  filtered videos  ", allFilterePosts)
@@ -85,7 +85,7 @@ const [allPostswMetadata, setallPostswMetadata] = useState({})
        
 
 
-if(loading){
+if(allVidsLoading){
   return(
     <div className='flex flex-col gap-3 w-full '>
       <ShortsSkeleton  />
@@ -94,17 +94,23 @@ if(loading){
 
   )
  }
+
+   if(allVidsError){
+    return(
+      <p>something went wrong</p>
+    )
+   }
     
   return (
     <div className='w-full '>
     
      <TopSection  />
    
-     {/*data?.notes?.filter(video => video.metadata?.content?.tags[0] !== "comment").length  < 1 && (
+     {allFilterePosts.length  < 0 && (
       <div className='border-t border-border-gray'>
   <NoData title='No  Videos Yet' isFullPage={true}  />
   </div>
-     )*/}
+     )}
 
     <div className='2xl:grid-cols-6 grid-col-1 xl:grid-cols-4 sm:grid-cols-3 grid gap-x-4 gap-y-2 sm:gap-y-6 px-1 md:px-2'>
      
