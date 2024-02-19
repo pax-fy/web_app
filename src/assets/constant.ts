@@ -13,7 +13,7 @@ export const PARTICLE_APP_ID =   process.env.NEXT_PUBLIC_PARTICLE_APP_ID
 
 export const IPFS_GATEWAY = "https://ipfs.subsocial.network/ipfs/";
 export const IPFS_GATEWAY2 = 'https://ipfs.crossbell.io/ipfs/'
-export const WEBSITE_URL = "https://www.zenvid.xyz"
+export const WEBSITE_URL = "https://www.paxfy.xyz"
   export  const sidebarNav  = [
     {
         title : "Home",
