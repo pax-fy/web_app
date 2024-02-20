@@ -21,6 +21,7 @@ export default function CreateHandleModal({closeModal} : Props) {
    const [isHandleCreated, setisHandleCreated] = useState(false)
    const [isHandleFailed, setisHandleFailed] = useState(false)
    const [handleInfo, sethandleInfo] = useState()
+   const [isCreating, setisCreating] = useState(false)
    const [handleCheck, sethandleCheck] = useState("NOT_AVAILABLE")
    const {uploadToIpfs, isUploading, isUploadingError} = usePinToIpfs()
    const {smartAccount, userAddress, userProfile} = useUserContext()
@@ -39,6 +40,7 @@ export default function CreateHandleModal({closeModal} : Props) {
   }
 
   try {
+    setisCreating(true)
 
       const avatarCID = await uploadToIpfs(channelAvatar)
         console.log("the avatar cid", avatarCID)
@@ -64,6 +66,7 @@ export default function CreateHandleModal({closeModal} : Props) {
 
     const transaction = await contract?.createCharacter(createCharacterData);
     await transaction.wait();
+    setisCreating(false)
    setisHandleCreated(true)
     console.log("Character created successfully!");
     console.log("Character created  here is the tx id", transaction);
@@ -174,7 +177,7 @@ export default function CreateHandleModal({closeModal} : Props) {
         </div>
 
        
-         <Button className='bg-background-primary text-text-on-primary w-full rounded-lg' disabled={!ChannelHandle} onClick={createHandle} variant={`ghost`} >Mint Your Profile</Button>
+         <Button className='bg-background-primary text-text-on-primary w-full rounded-lg' disabled={!ChannelHandle  || isCreating} onClick={createHandle} variant={`ghost`} >  {isCreating  ? "Minting profile" : "Mint Your Profile"}</Button>
          <Button className='  w-full rounded-lg mt-3 text-text'  onClick={closeModal} variant={`outline`}>Skip</Button>
 
       </div>
