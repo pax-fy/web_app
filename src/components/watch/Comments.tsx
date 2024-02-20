@@ -7,6 +7,12 @@ import Image from 'next/image';
 import { toast } from '../ui/use-toast';
 import { ClipLoader } from 'react-spinners';
 import { WEBSITE_URL } from '@/assets/constant';
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip"
 type commentsProps = {
   comments ? : any 
   profileId ? : any
@@ -40,11 +46,28 @@ export default function Comments({comments, videoId, profileId}: commentsProps) 
   className='w-full h-16 no resize-none focus:outline-none border p-2 rounded-xl border-gray-400 dark:border-gray-600 bg-inherit'
 
 />
- <button className='bg-black text-white dark:bg-white dark:text-black py-1.5 px-4 rounded-xl '
+
+<TooltipProvider>
+           <Tooltip>
+            <TooltipTrigger>
+            <button className='bg-black text-white dark:bg-white dark:text-black py-1.5 px-4 rounded-xl '
    	onClick={
       handleComment
     }
  >Send</button>
+            </TooltipTrigger>
+            <TooltipContent>
+              <div className='flex items-center gap-2'>
+                <p className='text-2xl'>💡</p>
+                 <p className='text-sm font-semibold'>Still in developement   Stay tuned!</p>
+              </div>
+            </TooltipContent>
+           </Tooltip>
+        </TooltipProvider>
+
+
+
+
       </div>
       <div className='flex items-center justify-center flex-col gap-3 mb-2'>
         <Image

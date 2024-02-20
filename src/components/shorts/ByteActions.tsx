@@ -4,11 +4,13 @@ import PublicationReaction from '@components/Common/Publication/PublicationReact
 import OpenActions from '@components/Watch/OpenActions'
 import { Button, Dialog, DialogClose, Flex, IconButton } from '@radix-ui/themes'
 import type { MirrorablePublication } from '@tape.xyz/lens'*/
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip"
 
-/*type Props = {
-  video: MirrorablePublication
-}*/
-// // w-[calc(100vw-80px)]
 import { useState } from "react"
 import { IoMdShareAlt } from "react-icons/io";
 import ShareButtons from '../cards/Share';
@@ -74,29 +76,26 @@ const ByteActions = ({ video }: any) => {
 <p className='text-sm md:font-semibold hidden'>Support</p>
           </div>
 
-          <>
-         
-    {
-      testTruth  ? (
-        <div className=' items-center gap-2 text-rose-500 cursor-pointer  flex'>
+          <TooltipProvider>
+           <Tooltip>
+            <TooltipTrigger>
+            <div className=' items-center gap-2 text-text-primary cursor-pointer  flex' >
        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6">
   <path d="M11.644 1.59a.75.75 0 01.712 0l9.75 5.25a.75.75 0 010 1.32l-9.75 5.25a.75.75 0 01-.712 0l-9.75-5.25a.75.75 0 010-1.32l9.75-5.25z" />
   <path d="M3.265 10.602l7.668 4.129a2.25 2.25 0 002.134 0l7.668-4.13 1.37.739a.75.75 0 010 1.32l-9.75 5.25a.75.75 0 01-.71 0l-9.75-5.25a.75.75 0 010-1.32l1.37-.738z" />
   <path d="M10.933 19.231l-7.668-4.13-1.37.739a.75.75 0 000 1.32l9.75 5.25c.221.12.489.12.71 0l9.75-5.25a.75.75 0 000-1.32l-1.37-.738-7.668 4.13a2.25 2.25 0 01-2.134-.001z" />
 </svg>
-<p className='text-sm font-semibold hidden '>Minted </p>
+<p className='text-sm font-semibold hidden'>Minted 2</p>
         </div>
-      ): (
-        <div className=' items-center gap-2 hover:text-rose-500 cursor-pointer  flex' >
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
-<path strokeLinecap="round" strokeLinejoin="round" d="M6.429 9.75L2.25 12l4.179 2.25m0-4.5l5.571 3 5.571-3m-11.142 0L2.25 7.5 12 2.25l9.75 5.25-4.179 2.25m0 0L21.75 12l-4.179 2.25m0 0l4.179 2.25L12 21.75 2.25 16.5l4.179-2.25m11.142 0l-5.571 3-5.571-3" />
-</svg>
-
-<p className='text-sm font-semibold hidden'>Mint </p>
-        </div>
-      )
-    }
-   </>
+            </TooltipTrigger>
+            <TooltipContent>
+              <div className='flex items-center gap-2'>
+                <p className='text-2xl'>💡</p>
+                 <p className='text-sm font-semibold'>collecting NFT  requires <span>$PAX</span> Token </p>
+              </div>
+            </TooltipContent>
+           </Tooltip>
+        </TooltipProvider>
 
   
    <Dialog>

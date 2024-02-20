@@ -10,6 +10,7 @@ export default function TipModal() {
 
   </div>*/}
    <h1 className='font-sans  mb-7 text-2xl text-center'>Support The creator</h1>
+      <p className='my-4 text-sm text-center'>💡 Your <span className='text-text-primary font-semibold'>$PAX </span> balance is 0  you need some $PAX to Tip </p>
     <div  className=' flex  gap-3 flex-wrap items-center justify-center'>
         
          {tipTier?.map((tip, i) => (

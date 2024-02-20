@@ -30,6 +30,7 @@
     "@radix-ui/react-switch": "^1.0.3",
     "@radix-ui/react-tabs": "^1.0.4",
     "@radix-ui/react-toast": "^1.1.5",
+    "@radix-ui/react-tooltip": "^1.0.7",
     "@radix-ui/themes": "^2.0.1",
     "@rajesh896/video-thumbnails-generator": "^2.3.9",
     "@tailwindcss/aspect-ratio": "^0.4.2",
@@ -64,7 +65,6 @@
     "tailwind-merge": "^2.0.0",
     "tailwind-scrollbar": "^3.0.5",
     "tailwindcss-animate": "^1.0.7"
-    
   },
   "devDependencies": {
     "@types/node": "^20",
