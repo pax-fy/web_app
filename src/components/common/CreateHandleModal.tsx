@@ -64,7 +64,7 @@ export default function CreateHandleModal({closeModal} : Props) {
 
     const transaction = await contract?.createCharacter(createCharacterData);
     await transaction.wait();
-
+   setisHandleCreated(true)
     console.log("Character created successfully!");
     console.log("Character created  here is the tx id", transaction);
     setisHandleCreated(true)
@@ -103,11 +103,33 @@ export default function CreateHandleModal({closeModal} : Props) {
         }
     }
   
+
+     if(! userAddress){
+      return(
+        <h2 className='text-3xl font-semibold '>Connect your  wallet fisrt</h2>
+     )
+     }
+
+     if(isHandleCreated){
+      return(
+        <div>
+           <h2>Congratulations</h2>
+           <p>Your handle have been created </p>
+            
+        </div>
+      )
+     }
   return (
     <div className=" p-3 w-full flex-col gap-2 max-w-7xl mx-auto flex items-center justify-center">
       <p className='text-xs text-red-500'>If you want to comment  post  or like  claim your profile fisr</p>
       <h1 className='text-xl font-extrabold mb-4'>Claim your channel profile</h1>
-
+    <div className='my-4'>
+       <h1 className='font-semibold  text-text-primary mb-1'>Quick guide</h1>
+         <p className='text-xs'>1-  Fill the handle name and avatar</p>
+         <p className='text-xs'>2-  Click mint button  &  wait for Partcle pop-up </p>
+         <p className='text-xs'>3-  Click screnn to close exsiting modal and  sign Tx</p>
+         <p className='text-xs'>4-  wait for  few seconds for tx   and  refresh your website</p>
+         </div>
       <div className='w-[400px] h-[570px] border border-gray-300  dark:border-gray-700 rounded-lg p-4 flex flex-col items-center  '>
        <div>
           <h1 className='font-semibold my-3 text-center'>Profile Avatar</h1>

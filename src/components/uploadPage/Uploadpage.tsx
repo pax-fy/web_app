@@ -7,7 +7,7 @@ import CreateHandleModal from "../common/CreateHandleModal";
 
 export default function UploadPage() {
   const [videoFile, setvideoFile] = useState();
-  const {toggleHandleModal, primaryProfile, isShowHandleModal} = useUserContext()
+  const {toggleHandleModal, primaryProfile, isShowHandleModal, userAddress} = useUserContext()
   const [test, settest] = useState(true)
   console.log("the selected file", videoFile);
 
@@ -17,17 +17,33 @@ export default function UploadPage() {
         }
     }, [primaryProfile])
     
+
+      if(! userAddress){
+       return(
+        <div className="w-full h-screen flex items-center justify-center">
+        <p className="font-semibold text-3xl">connect your  wallet</p>
+        </div>
+       )
+      }
   return (
     <div className=" min-h-screen px-2 flex items-center justify-center">
-      {videoFile ? (
+      {videoFile  ? (
         <VideoMetadata videoFile={videoFile} setVideoFile={setvideoFile} />
       ) : (
         <SelectVideoFile handleSelectFile={setvideoFile} />
       )}
-
-       <Modal isOpen={isShowHandleModal} closeModal={toggleHandleModal}>
+        { ! primaryProfile &&
+          userAddress &&  (
+            <Modal isOpen={isShowHandleModal} closeModal={toggleHandleModal}>
          <CreateHandleModal closeModal={toggleHandleModal} />
        </Modal>
+          )
+        }
+
+         
+        
+         
+      
     </div>
   );
 }

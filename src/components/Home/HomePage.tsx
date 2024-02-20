@@ -33,7 +33,7 @@ export default function HomePage() {
 const [allFilterePosts, setallFilterePosts] = useState([])
 const [allPostswMetadata, setallPostswMetadata] = useState({})
    const {allVids, allVidsLoading, allVidsError} = useGetAllVideos()
-  const {primaryProfile, isShowHandleModal, toggleHandleModal} = useUserContext()
+  const {primaryProfile, isShowHandleModal, toggleHandleModal, userAddress} = useUserContext()
      console.log("see all videos  with metadata", allPostswMetadata)
      console.log("see all  filtered videos  ", allFilterePosts)
 
@@ -89,10 +89,10 @@ const [allPostswMetadata, setallPostswMetadata] = useState({})
       }, [allVids]);
 
       useEffect(() => {
-      if(! primaryProfile){
+      if(  userAddress && ! primaryProfile){
        toggleHandleModal()
       }
-      }, [])
+      }, [primaryProfile])
       
      
        
@@ -146,10 +146,13 @@ if(allVidsLoading){
    
     </div>
 
-
- <Modal isOpen={isShowHandleModal} closeModal={toggleHandleModal} >
+ {
+  ! primaryProfile  &&  userAddress &&
+  <Modal isOpen={isShowHandleModal} closeModal={toggleHandleModal} >
     <CreateHandleModal  closeModal={toggleHandleModal} />
  </Modal>
+ }
+ 
     </div>
   )
 }
