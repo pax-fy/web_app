@@ -104,21 +104,7 @@ export default function CreateHandleModal({closeModal} : Props) {
     }
   
 
-     if(! userAddress){
-      return(
-        <h2 className='text-3xl font-semibold '>Connect your  wallet fisrt</h2>
-     )
-     }
-
-     if(isHandleCreated){
-      return(
-        <div>
-           <h2>Congratulations</h2>
-           <p>Your handle have been created </p>
-            
-        </div>
-      )
-     }
+    
   return (
     <div className=" p-3 w-full flex-col gap-2 max-w-7xl mx-auto flex items-center justify-center">
       <p className='text-xs text-red-500'>If you want to comment  post  or like  claim your profile fisr</p>
